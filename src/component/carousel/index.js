@@ -125,7 +125,7 @@ const colors = ['#fda282', '#fdba4e', '#800015','#fdba4e', '#800015',];
  
 const PAGE_WIDTH = window.width;
 const PAGE_HEIGHT = window.width * 1.8;
- 
+
 function Index() {
   const [isAutoPlay, setIsAutoPlay] = React.useState(false);
  
@@ -258,9 +258,9 @@ const Card = ({index, animationValue}) => {
       />
  
       <Animated.Image
-        source={angkaItems[index]}
+        source={buahItems[index]}
         style={[
-          {
+          { 
             width: WIDTH * 0.8,
             borderRadius: 16,
             justifyContent: 'center',
