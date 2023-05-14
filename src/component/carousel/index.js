@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useCallback, useEffect, useRef, useState} from 'react';
 import {View, Text, Dimensions} from 'react-native';
 import {TouchableWithoutFeedback} from 'react-native-gesture-handler';
 import Animated, {
@@ -7,14 +7,14 @@ import Animated, {
   useAnimatedStyle,
 } from 'react-native-reanimated';
 import Carousel from 'react-native-reanimated-carousel';
- 
+
 const SButton = props => {
   const {children, visible = true, onPress} = props;
- 
+
   if (!visible) {
     return <></>;
   }
- 
+
   return (
     <View
       style={{
@@ -37,36 +37,36 @@ const SButton = props => {
     </View>
   );
 };
- 
+
 const ElementsText = {
   AUTOPLAY: 'AutoPlay',
 };
- 
+
 const window = Dimensions.get('window');
- 
+
 const isValidSize = size => {
   'worklet';
- 
+
   return size && size.width > 0 && size.height > 0;
 };
- 
+
 const defaultAnchorPoint = {x: 0.5, y: 0.5};
- 
+
 const withAnchorPoint = (transform, anchorPoint, size) => {
   'worklet';
- 
+
   if (!isValidSize(size)) {
     return transform;
   }
- 
+
   let injectedTransform = transform.transform;
   if (!injectedTransform) {
     return transform;
   }
- 
+
   if (anchorPoint.x !== defaultAnchorPoint.x && size.width) {
     const shiftTranslateX = [];
- 
+
     // shift before rotation
     shiftTranslateX.push({
       translateX: size.width * (anchorPoint.x - defaultAnchorPoint.x),
@@ -77,11 +77,11 @@ const withAnchorPoint = (transform, anchorPoint, size) => {
       translateX: size.width * (defaultAnchorPoint.x - anchorPoint.x),
     });
   }
- 
+
   if (!Array.isArray(injectedTransform)) {
     return {transform: injectedTransform};
   }
- 
+
   if (anchorPoint.y !== defaultAnchorPoint.y && size.height) {
     const shiftTranslateY = [];
     // shift before rotation
@@ -94,17 +94,17 @@ const withAnchorPoint = (transform, anchorPoint, size) => {
       translateY: size.height * (defaultAnchorPoint.y - anchorPoint.y),
     });
   }
- 
+
   return {transform: injectedTransform};
 };
- 
+
 // TOLONG DISAMAKAN
 const angka_0 = require('../../../assets/angka/0.png');
 const angka_1 = require('../../../assets/angka/1.png');
 const angka_2 = require('../../../assets/angka/2.png');
 const angka_3 = require('../../../assets/angka/3.png');
 const angka_4 = require('../../../assets/angka/4.png');
- 
+
 const angkaItems = [angka_0, angka_1, angka_2, angka_3, angka_4];
 
 const buah_0 = require('../../../assets/buah/banana.png');
@@ -112,61 +112,89 @@ const buah_1 = require('../../../assets/buah/grape.png');
 const buah_2 = require('../../../assets/buah/jeruk.png');
 const buah_3 = require('../../../assets/buah/mangga.png');
 const buah_4 = require('../../../assets/buah/unnamed.png');
- 
+
 const buahItems = [buah_0, buah_1, buah_2, buah_3, buah_4];
 
 const hewan_0 = require('../../../assets/hewan/ayam.png');
 const hewan_1 = require('../../../assets/hewan/gajah.png');
 const hewan_2 = require('../../../assets/hewan/koala.png');
- 
-const hewanItems = [hewan_0, hewan_1, hewan_2,];
- 
-const colors = ['#fda282', '#fdba4e', '#800015','#fdba4e', '#800015',];
- 
+
+const hewanItems = [hewan_0, hewan_1, hewan_2];
+
+const colors = ['#fda282', '#fdba4e', '#800015', '#fdba4e', '#800015'];
+
 const PAGE_WIDTH = window.width;
 const PAGE_HEIGHT = window.width * 1.8;
 
-function Index() {
-  const [isAutoPlay, setIsAutoPlay] = React.useState(false);
- 
+function Index({getIndex}) {
+  const [currentIndex, setCurrentIndex] = useState(null);
+  const carouselRef = useRef();
+  const isNewSwap = useRef(false);
+
   const baseOptions = {
     vertical: false,
     width: PAGE_WIDTH,
     height: PAGE_HEIGHT,
   };
- 
+
+  const handleSwipe = useCallback(
+    index => {
+      setCurrentIndex(index);
+      getIndex(index);
+    },
+    [getIndex],
+  );
+
   return (
     <View style={{flex: 1}}>
       <Carousel
+        ref={carouselRef}
         {...baseOptions}
         loop
-        autoPlay={isAutoPlay}
         withAnimation={{
           type: 'spring',
           config: {
             damping: 13,
           },
         }}
-        autoPlayInterval={1500}
         data={colors}
         renderItem={({index, animationValue}) => (
           <Card animationValue={animationValue} key={index} index={index} />
         )}
+        onScrollBegin={() => {
+          isNewSwap.current = true;
+        }}
+        // onProgressChange={(_, absoluteProgress) => {
+        //   const index = Math.round(absoluteProgress);
+        //   if (currentIndex !== index) {
+        //     handleSwipe(Math.round(absoluteProgress));
+        //   }
+        // }}
+        onProgressChange={(_, absoluteProgress) => {
+          const progress =
+            absoluteProgress - carouselRef.current.getCurrentIndex();
+
+          if (
+            carouselRef.current &&
+            Math.abs(progress) >= 0.45 &&
+            isNewSwap.current
+          ) {
+            isNewSwap.current = false;
+
+            setTimeout(() => {
+              handleSwipe(carouselRef.current.getCurrentIndex());
+            }, 50);
+          }
+        }}
       />
-      <SButton
-        onPress={() => {
-          setIsAutoPlay(!isAutoPlay);
-        }}>
-        {ElementsText.AUTOPLAY}:{`${isAutoPlay}`}
-      </SButton>
     </View>
   );
 }
- 
+
 const Card = ({index, animationValue}) => {
   const WIDTH = PAGE_WIDTH / 1.5;
   const HEIGHT = PAGE_HEIGHT / 1.5;
- 
+
   const cardStyle = useAnimatedStyle(() => {
     const scale = interpolate(
       animationValue.value,
@@ -174,13 +202,13 @@ const Card = ({index, animationValue}) => {
       [0.95, 1, 1],
       Extrapolate.CLAMP,
     );
- 
+
     const translateX = interpolate(
       animationValue.value,
       [-1, -0.2, 0, 1],
       [0, WIDTH * 0.3, 0, 0],
     );
- 
+
     const transform = {
       transform: [
         {scale},
@@ -196,7 +224,7 @@ const Card = ({index, animationValue}) => {
         },
       ],
     };
- 
+
     return {
       ...withAnchorPoint(
         transform,
@@ -205,27 +233,27 @@ const Card = ({index, animationValue}) => {
       ),
     };
   }, [index]);
- 
+
   const blockStyle = useAnimatedStyle(() => {
     const translateX = interpolate(
       animationValue.value,
       [-1, 0, 1],
       [0, 60, 60],
     );
- 
+
     const translateY = interpolate(
       animationValue.value,
       [-1, 0, 1],
       [0, -40, -40],
     );
- 
+
     const rotateZ = interpolate(animationValue.value, [-1, 0, 1], [0, 0, -25]);
- 
+
     return {
       transform: [{translateX}, {translateY}, {rotateZ: `${rotateZ}deg`}],
     };
   }, [index]);
- 
+
   return (
     <Animated.View
       style={{
@@ -250,17 +278,17 @@ const Card = ({index, animationValue}) => {
             },
             shadowOpacity: 0.44,
             shadowRadius: 10.32,
- 
+
             elevation: 16,
           },
           cardStyle,
         ]}
       />
- 
+
       <Animated.Image
         source={buahItems[index]}
         style={[
-          { 
+          {
             width: WIDTH * 0.8,
             borderRadius: 16,
             justifyContent: 'center',
@@ -275,5 +303,5 @@ const Card = ({index, animationValue}) => {
     </Animated.View>
   );
 };
- 
+
 export default Index;
