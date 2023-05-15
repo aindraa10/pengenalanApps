@@ -24,6 +24,10 @@ const styles = {
   itemInvisible: {
     backgroundColor: 'transparent',
   },
+  image: {
+    flex: 1,
+    justifyContent: 'center',
+  },
 };
 
 export default styles;

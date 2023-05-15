@@ -7,6 +7,8 @@ import Animated, {
   useAnimatedStyle,
 } from 'react-native-reanimated';
 import Carousel from 'react-native-reanimated-carousel';
+import { Icon } from '..';
+// import { Icon } from '../icon';
  
 const SButton = props => {
   const {children, visible = true, onPress} = props;
@@ -97,32 +99,7 @@ const withAnchorPoint = (transform, anchorPoint, size) => {
  
   return {transform: injectedTransform};
 };
- 
-// TOLONG DISAMAKAN
-const angka_0 = require('../../../assets/angka/0.png');
-const angka_1 = require('../../../assets/angka/1.png');
-const angka_2 = require('../../../assets/angka/2.png');
-const angka_3 = require('../../../assets/angka/3.png');
-const angka_4 = require('../../../assets/angka/4.png');
- 
-const angkaItems = [angka_0, angka_1, angka_2, angka_3, angka_4];
 
-const buah_0 = require('../../../assets/buah/banana.png');
-const buah_1 = require('../../../assets/buah/grape.png');
-const buah_2 = require('../../../assets/buah/jeruk.png');
-const buah_3 = require('../../../assets/buah/mangga.png');
-const buah_4 = require('../../../assets/buah/unnamed.png');
- 
-const buahItems = [buah_0, buah_1, buah_2, buah_3, buah_4];
-
-const hewan_0 = require('../../../assets/hewan/ayam.png');
-const hewan_1 = require('../../../assets/hewan/gajah.png');
-const hewan_2 = require('../../../assets/hewan/koala.png');
- 
-const hewanItems = [hewan_0, hewan_1, hewan_2,];
- 
-const colors = ['#fda282', '#fdba4e', '#800015','#fdba4e', '#800015',];
- 
 const PAGE_WIDTH = window.width;
 const PAGE_HEIGHT = window.width * 1.8;
 
@@ -162,8 +139,63 @@ function Index() {
     </View>
   );
 }
+
+
+
+const data = [
+  {
+    title: "Nol",
+    imgUrl: require('../../../assets/angka/0.png')
+  },
+  {
+    title: "Satu",
+    imgUrl: require('../../../assets/angka/1.png')
+  },
+  {
+    title: "Dua",
+    imgUrl: require('../../../assets/angka/2.png')
+  },
+  {
+    title: "Tiga",
+    imgUrl: require('../../../assets/angka/3.png')
+  },
+  {
+    title: "Empat",
+    imgUrl: require('../../../assets/angka/4.png')
+  },
+  {
+    title: "Lima",
+    imgUrl: require('../../../assets/angka/5.png')
+  }
+]
+
+// TOLONG DISAMAKAN
+const angka_0 = require('../../../assets/angka/0.png');
+const angka_1 = require('../../../assets/angka/1.png');
+const angka_2 = require('../../../assets/angka/2.png');
+const angka_3 = require('../../../assets/angka/3.png');
+const angka_4 = require('../../../assets/angka/4.png');
  
-const Card = ({index, animationValue}) => {
+const angkaItems = [angka_0, angka_1, angka_2, angka_3, angka_4];
+
+const buah_0 = require('../../../assets/buah/banana.png');
+const buah_1 = require('../../../assets/buah/grape.png');
+const buah_2 = require('../../../assets/buah/jeruk.png');
+const buah_3 = require('../../../assets/buah/mangga.png');
+const buah_4 = require('../../../assets/buah/unnamed.png');
+ 
+const buahItems = [buah_0, buah_1, buah_2, buah_3, buah_4];
+
+const hewan_0 = require('../../../assets/hewan/ayam.png');
+const hewan_1 = require('../../../assets/hewan/gajah.png');
+const hewan_2 = require('../../../assets/hewan/koala.png');
+ 
+const hewanItems = [hewan_0, hewan_1, hewan_2,];
+ 
+const colors = ['#fda282', '#fdba4e', '#800015','#fdba4e', '#800015',];
+ 
+ 
+const Card = ({item,data,index, animationValue}) => {
   const WIDTH = PAGE_WIDTH / 1.5;
   const HEIGHT = PAGE_HEIGHT / 1.5;
  
@@ -232,7 +264,11 @@ const Card = ({index, animationValue}) => {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-      }}>
+      }} 
+      key={index}
+      >
+      <Text style={{fontSize:40,color:"red",fontWeight:'bold'}}>ULAR</Text>
+
       <Animated.View
         style={[
           {
@@ -250,15 +286,15 @@ const Card = ({index, animationValue}) => {
             },
             shadowOpacity: 0.44,
             shadowRadius: 10.32,
- 
+            marginBottom:25,
             elevation: 16,
           },
           cardStyle,
         ]}
       />
- 
+
       <Animated.Image
-        source={buahItems[index]}
+        source={hewanItems[index]}
         style={[
           { 
             width: WIDTH * 0.8,
@@ -272,6 +308,7 @@ const Card = ({index, animationValue}) => {
         ]}
         resizeMode={'contain'}
       />
+<Icon type="fontawesome5" name="play" size={ 40 }/>
     </Animated.View>
   );
 };

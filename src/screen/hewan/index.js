@@ -1,10 +1,12 @@
 import React from 'react'
 import { View, Text } from 'react-native'
+import { Carous } from '../../component'
 
 const Hewan = () => {
   return (
     <View>
-      <Text>HEWAN</Text>
+      <Carous/>
+      {/* <Text>HEWAN</Text> */}
     </View>
   )
 }
