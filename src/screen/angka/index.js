@@ -1,16 +1,15 @@
-import React from 'react'
-import { View, Text } from 'react-native'
-import {Carous} from '../../component'
-import { dataAngka } from '../../dummy'
+import React from 'react';
+import {View, Text} from 'react-native';
+import {Carous} from '../../component';
+import {dataAngka} from '../../dummy';
 
-const Angka = props => {
-  const {data}= props
+const Angka = () => {
   return (
     <View>
-      <Carous/>
+      <Carous data={dataAngka} />
       {/* <Text>ANGKA</Text> */}
     </View>
-  )
-}
+  );
+};
 
-export default Angka
+export default Angka;
