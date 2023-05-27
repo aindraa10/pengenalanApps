@@ -1,10 +1,8 @@
-import React from 'react'
-import { View, Text } from 'react-native'
-import Navigation from "./src/navigation"
+import React from 'react';
+import {View, Text} from 'react-native';
+import Navigation from './src/navigation';
 const App = () => {
-  return (
-    <Navigation />
-  )
-}
+  return <Navigation />;
+};
 
-export default App
+export default App;

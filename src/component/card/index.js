@@ -1,27 +1,22 @@
-import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux'
-import { View, FlatList, TouchableOpacity, Image } from 'react-native';
-import { Text, Button } from '../../component';
+import React, {useState, useEffect} from 'react';
+import {View, FlatList, TouchableOpacity, Image} from 'react-native';
+import {Text, Button} from '../../component';
 import styles from './styles';
 
 const Card = props => {
-
-  const { data, onPress, menu, carts } = props
+  const {data, onPress, menu, carts} = props;
 
   return (
-    <View style={ { paddingHorizontal: 10, paddingVertical: 10, } }>
+    <View style={{paddingHorizontal: 10, paddingVertical: 10}}>
       <FlatList
-        data={ data }
-        renderItem={ ( { item, index } ) => {
+        data={data}
+        renderItem={({item, index}) => {
           // console.log( item );
           return (
-            <View style={ styles.card }
-              key={ index }
-              item={ item }
-            >
-              <View style={ styles.content }>
-                <Text style={ styles.text }>{ item.title }</Text>
-                {/* <Text style={ styles.textDesc }>{ item.price }</Text> */ }
+            <View style={styles.card} key={index} item={item}>
+              <View style={styles.content}>
+                <Text style={styles.text}>{item.title}</Text>
+                {/* <Text style={ styles.textDesc }>{ item.price }</Text> */}
                 {/* {
                   item.total === 0 ?
 
@@ -62,12 +57,11 @@ const Card = props => {
                 </View>
               </TouchableOpacity> */}
             </View>
-          )
-        }
-        }
-        keyExtractor={ ( item ) => item.title }
+          );
+        }}
+        keyExtractor={item => item.title}
       />
-      {/* 
+      {/*
       <BottomSheet visible={ isModalVisible }>
         <View style={ {
           alignItems: "center",
@@ -84,7 +78,6 @@ const Card = props => {
             } } />
         </View>
       </BottomSheet> */}
-
     </View>
   );
 };
