@@ -4,6 +4,7 @@ import {Carous} from '../../component'
 import { dataAngka } from '../../dummy'
 
 const Angka = props => {
+  const {data}= props
   return (
     <View>
       <Carous/>

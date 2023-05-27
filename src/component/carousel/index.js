@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, Dimensions} from 'react-native';
+import {View, Text, Dimensions, FlatList} from 'react-native';
 import {TouchableWithoutFeedback} from 'react-native-gesture-handler';
 import Animated, {
   Extrapolate,
@@ -8,7 +8,6 @@ import Animated, {
 } from 'react-native-reanimated';
 import Carousel from 'react-native-reanimated-carousel';
 import { Icon } from '..';
-// import { Icon } from '../icon';
  
 const SButton = props => {
   const {children, visible = true, onPress} = props;
@@ -142,7 +141,7 @@ function Index() {
 
 
 
-const data = [
+const dataAngka = [
   {
     title: "Nol",
     imgUrl: require('../../../assets/angka/0.png')
@@ -195,9 +194,10 @@ const hewanItems = [hewan_0, hewan_1, hewan_2,];
 const colors = ['#fda282', '#fdba4e', '#800015','#fdba4e', '#800015',];
  
  
-const Card = ({item,data,index, animationValue}) => {
+const Card = props => {
   const WIDTH = PAGE_WIDTH / 1.5;
   const HEIGHT = PAGE_HEIGHT / 1.5;
+  const {data,item,index, animationValue,}=props
  
   const cardStyle = useAnimatedStyle(() => {
     const scale = interpolate(
@@ -259,57 +259,74 @@ const Card = ({item,data,index, animationValue}) => {
   }, [index]);
  
   return (
-    <Animated.View
-      style={{
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-      }} 
-      key={index}
-      >
-      <Text style={{fontSize:40,color:"red",fontWeight:'bold'}}>ULAR</Text>
-
-      <Animated.View
-        style={[
-          {
-            backgroundColor: colors[index],
-            alignSelf: 'center',
-            justifyContent: 'center',
-            alignItems: 'center',
-            borderRadius: 20,
-            width: WIDTH,
-            height: HEIGHT,
-            shadowColor: '#000',
-            shadowOffset: {
-              width: 0,
-              height: 8,
+    // <View>
+    // <FlatList 
+    // data={data}
+    // initialNumToRender={initialNumToRender}
+    // renderItem={({item, index})  => {
+      // return(
+        <Animated.View
+        style={{
+          flex: 1,
+          justifyContent: 'center',
+          alignItems: 'center',
+        }} 
+        key={index}
+        item={item}
+        >
+        <Text style={{fontSize:40,color:"red",fontWeight:'bold'}}>ULAR</Text>
+  
+        <Animated.View
+          style={[
+            {
+              backgroundColor: colors[index],
+              alignSelf: 'center',
+              justifyContent: 'center',
+              alignItems: 'center',
+              borderRadius: 20,
+              width: WIDTH,
+              height: HEIGHT,
+              shadowColor: '#000',
+              shadowOffset: {
+                width: 0,
+                height: 8,
+              },
+              shadowOpacity: 0.44,
+              shadowRadius: 10.32,
+              marginBottom:25,
+              elevation: 16,
             },
-            shadowOpacity: 0.44,
-            shadowRadius: 10.32,
-            marginBottom:25,
-            elevation: 16,
-          },
-          cardStyle,
-        ]}
-      />
-
-      <Animated.Image
-        source={hewanItems[index]}
-        style={[
-          { 
-            width: WIDTH * 0.8,
-            borderRadius: 16,
-            justifyContent: 'center',
-            alignItems: 'center',
-            position: 'absolute',
-            zIndex: 999,
-          },
-          blockStyle,
-        ]}
-        resizeMode={'contain'}
-      />
-<Icon type="fontawesome5" name="play" size={ 40 }/>
-    </Animated.View>
+            cardStyle,
+          ]}
+        />
+  
+        <Animated.Image
+          source={hewanItems[index]}
+          // source={item.Image}
+          // source={ {
+          //   uri: `${ config.url }public/product/${ item.image }`
+          // } }
+          style={[
+            { 
+              width: WIDTH * 0.8,
+              borderRadius: 16,
+              justifyContent: 'center',
+              alignItems: 'center',
+              position: 'absolute',
+              zIndex: 999,
+            },
+            blockStyle,
+          ]}
+          resizeMode={'contain'}
+        />
+        <Icon type="fontawesome5" name="play" size={ 40 }/>
+      </Animated.View>
+      // )
+    // }
+  // }
+    
+    // />
+// </View>
   );
 };
  

@@ -13,7 +13,6 @@ const Card = props => {
       <FlatList
         data={ data }
         renderItem={ ( { item, index } ) => {
-          // console.log( item );
           return (
             <View style={ styles.card }
               key={ index }
@@ -67,24 +66,6 @@ const Card = props => {
         }
         keyExtractor={ ( item ) => item.title }
       />
-      {/* 
-      <BottomSheet visible={ isModalVisible }>
-        <View style={ {
-          alignItems: "center",
-        } }>
-          <Button
-            title="X"
-            btnStyle={ styles.btnClose }
-            onPress={ toggleModal } />
-          <Image style={ {
-            width: 350, height: 300, borderRadius: 10, resizeMode: 'stretch',
-          } }
-            source={ {
-              uri: pict
-            } } />
-        </View>
-      </BottomSheet> */}
-
     </View>
   );
 };
