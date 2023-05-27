@@ -1,15 +1,13 @@
 import React from 'react'
 import { View, Text } from 'react-native'
-import { Card, Carous } from '../../component'
-// import { dataHuruf } from '../../Dummy/Abc'
+import { Carous, Container } from '../../component'
+import { dataHuruf } from '../../dummy'
 
-const Huruf = props => {
-  const { navigation, data } = props
+const Huruf = () => {
   return (
-    <View>
-      <Carous/>
-      {/* <Text>ABC</Text> */}
-    </View>
+    <Container>
+      <Carous data={dataHuruf}/>
+    </Container>
   )
 }
 

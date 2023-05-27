@@ -1,14 +1,14 @@
 import React from 'react';
 import {View, Text} from 'react-native';
-import {Carous} from '../../component';
+import {Carous, Container} from '../../component';
 import {dataAngka} from '../../dummy';
+
 
 const Angka = () => {
   return (
-    <View>
+    <Container>
       <Carous data={dataAngka} />
-      {/* <Text>ANGKA</Text> */}
-    </View>
+    </Container>
   );
 };
 

@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import {View, Text, Dimensions} from 'react-native';
+import {View, Text, Dimensions,ImageBackground} from 'react-native';
 import {TouchableWithoutFeedback} from 'react-native-gesture-handler';
 import Animated, {
   Extrapolate,
@@ -8,6 +8,7 @@ import Animated, {
   useAnimatedStyle,
 } from 'react-native-reanimated';
 import Carousel from 'react-native-reanimated-carousel';
+import styles from '../../screen/dashboard/styles';
 
 const SButton = props => {
   const {children, visible = true, onPress} = props;
@@ -22,12 +23,13 @@ const SButton = props => {
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
-      }}>
+      }}
+      >
       <TouchableWithoutFeedback onPress={onPress}>
         <View
           style={{
             marginTop: 20,
-            backgroundColor: '#26292E',
+            backgroundColor: '26292E',
             borderRadius: 50,
             paddingHorizontal: 20,
             padding: 10,
@@ -105,6 +107,7 @@ const PAGE_HEIGHT = window.width * 1.8;
 const colors = ['#fda282', '#fdba4e', '#800015', '#fdba4e', '#800015'];
 
 const Card = props => {
+
   const WIDTH = PAGE_WIDTH / 1.5;
   const HEIGHT = PAGE_HEIGHT / 1.5;
   const {data, item, index, animationValue} = props;
@@ -226,7 +229,7 @@ const Card = props => {
 
 const CarouselContainer = ({data}) => {
   const [isAutoPlay, setIsAutoPlay] = React.useState(false);
-
+  const image = require('../../../assets/bgTaman.jpg');
   const baseOptions = {
     vertical: false,
     width: PAGE_WIDTH,
@@ -235,6 +238,8 @@ const CarouselContainer = ({data}) => {
 
   return (
     <View style={{flex: 1}}>
+      <ImageBackground source={image} resizeMode="cover" style={styles.image}>
+
       <Carousel
         {...baseOptions}
         loop
@@ -262,6 +267,7 @@ const CarouselContainer = ({data}) => {
         }}>
         {ElementsText.AUTOPLAY}:{`${isAutoPlay}`}
       </SButton>
+      </ImageBackground>
     </View>
   );
 };

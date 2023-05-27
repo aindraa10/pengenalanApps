@@ -51,14 +51,14 @@ const Dashboard = props => {
     <Container>
       <ImageBackground source={image} resizeMode="cover" style={styles.image}>
         <View style={{alignItems: 'center', marginVertical: 100}}>
-          <Text style={{fontSize: 30, fontWeight: 'bold', textAlign: 'center'}}>
+          <Text style={{fontSize: 50, fontWeight: 'bold', textAlign: 'center'}}>
+            PG-RA AL-AMANAH
+          </Text>
+          <Text style={{fontSize: 35, fontWeight: 'bold', textAlign: 'center'}}>
             PENGENALAN
           </Text>
           <Text style={{fontSize: 25, fontWeight: 'bold', textAlign: 'center'}}>
-            Huruf, Angka, Buah,dan Hewan
-          </Text>
-          <Text style={{fontSize: 50, fontWeight: 'bold', textAlign: 'center'}}>
-            PG-RA AL-AMANAH
+            HURUF, ANGKA, BUAH, DAN HEWAN
           </Text>
         </View>
         <FlatList
@@ -71,67 +71,6 @@ const Dashboard = props => {
     </Container>
   );
 
-  // return (
-  // <View style={ { alignItems: 'center' } }>
-  //   <Text style={ { fontSize: 50, fontWeight: 'bold', textAlign: 'center' } }> PG-RA AL-AMANAH </Text>
-  //   <View style={ { flexDirection: "row", padding: 10 } }>
-  //     <TouchableOpacity onPress={ Abc }>
-  //       <View style={ {
-  //         backgroundColor: 'orange',
-  //         width: 150, height: 150,
-  //         borderRadius: 20,
-  //         margin: 20,
-  //         alignItems: 'center',
-  //         justifyContent: 'center'
-
-  //       } }>
-  //         <Text style={ { fontSize: 40 } }>ABC</Text>
-  //       </View>
-  //     </TouchableOpacity>
-  //     <TouchableOpacity>
-  //       <View style={ {
-  //         backgroundColor: 'blue',
-  //         width: 150, height: 150,
-  //         borderRadius: 20,
-  //         margin: 20,
-  //         alignItems: 'center',
-  //         justifyContent: 'center'
-
-  //       } }>
-  //         <Text style={ { fontSize: 40, } }>123</Text>
-  //       </View>
-  //     </TouchableOpacity>
-  //   </View>
-  //   <View style={ { flexDirection: "row", padding: 10 } }>
-  //     <TouchableOpacity>
-  //       <View style={ {
-  //         backgroundColor: 'green',
-  //         width: 150, height: 150,
-  //         borderRadius: 20,
-  //         margin: 20,
-  //         alignItems: 'center',
-  //         justifyContent: 'center'
-
-  //       } }>
-  //         <Text style={ { fontSize: 25 } }>HEWAN</Text>
-  //       </View>
-  //     </TouchableOpacity>
-  //     <TouchableOpacity>
-  //       <View style={ {
-  //         backgroundColor: 'red',
-  //         width: 150, height: 150,
-  //         borderRadius: 20,
-  //         margin: 20,
-  //         alignItems: 'center',
-  //         justifyContent: 'center'
-
-  //       } }>
-  //         <Text style={ { fontSize: 25 } }>BUAH</Text>
-  //       </View>
-  //     </TouchableOpacity>
-  //   </View>
-  // </View>
-  // )
 };
 
 export default Dashboard;
