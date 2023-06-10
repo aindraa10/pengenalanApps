@@ -23,25 +23,22 @@ const dataAngka = [
 
 const dataBuah = [
   {
-    title: 'NOL',
-    imgUrl: require('../../assets/angka/0.png')
+    title: 'PISANG',
+    imgUrl: require('../../assets/buah/banana.png')
   },
   {
-    title: 'SATU',
-    imgUrl: require('../../assets/angka/1.png')
+    title: 'ANGGUR',
+    imgUrl: require('../../assets/buah/grape.png')
   },
   {
-    title: 'DUA',
-    imgUrl: require('../../assets/angka/2.png')
+    title: 'JERUK',
+    imgUrl: require('../../assets/buah/jeruk.png')
   },
   {
-    title: 'TIGA',
-    imgUrl: require('../../assets/angka/3.png')
+    title: 'MANGGA',
+    imgUrl: require('../../assets/buah/mangga.png')
   },
-  {
-    title: 'EMPAT',
-    imgUrl: require('../../assets/angka/4.png')
-  },
+
 ];
 
 const dataHuruf = [
@@ -69,25 +66,18 @@ const dataHuruf = [
 
 const dataHewan = [
   {
-    title: 'NOL',
-    imgUrl: require('../../assets/angka/0.png')
+    title: 'ULAR',
+    imgUrl: require('../../assets/hewan/ular.png')
   },
   {
-    title: 'SATU',
-    imgUrl: require('../../assets/angka/1.png')
+    title: 'GAJAH',
+    imgUrl: require('../../assets/hewan/gajah.png')
   },
   {
-    title: 'DUA',
-    imgUrl: require('../../assets/angka/2.png')
+    title: 'KOALA',
+    imgUrl: require('../../assets/hewan/koala.png')
   },
-  {
-    title: 'TIGA',
-    imgUrl: require('../../assets/angka/3.png')
-  },
-  {
-    title: 'EMPAT',
-    imgUrl: require('../../assets/angka/4.png')
-  },
+
 ];
 
 export {dataAngka, dataBuah, dataHewan, dataHuruf};
