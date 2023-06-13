@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import {View, Text, Dimensions,ImageBackground} from 'react-native';
+import {View, Text, Dimensions, ImageBackground, Image} from 'react-native';
 import {TouchableWithoutFeedback} from 'react-native-gesture-handler';
 import Animated, {
   Extrapolate,
@@ -23,8 +23,7 @@ const SButton = props => {
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
-      }}
-      >
+      }}>
       <TouchableWithoutFeedback onPress={onPress}>
         <View
           style={{
@@ -107,7 +106,6 @@ const PAGE_HEIGHT = window.width * 1.8;
 const colors = ['#fda282', '#fdba4e', '#800015', '#fdba4e', '#800015'];
 
 const Card = props => {
-
   const WIDTH = PAGE_WIDTH / 1.5;
   const HEIGHT = PAGE_HEIGHT / 1.5;
   const {data, item, index, animationValue} = props;
@@ -209,10 +207,11 @@ const Card = props => {
       />
 
       <Animated.Image
-        source={data.imgUrl}
+        source={{uri: data.imgUrl}}
         style={[
           {
             width: WIDTH * 0.8,
+            height: HEIGHT / 1.5,
             borderRadius: 16,
             justifyContent: 'center',
             alignItems: 'center',
@@ -236,40 +235,43 @@ const CarouselContainer = ({data}) => {
     height: PAGE_HEIGHT,
   };
 
-  return (
-    <View style={{flex: 1}}>
-      <ImageBackground source={image} resizeMode="cover" style={styles.image}>
-
-      <Carousel
-        {...baseOptions}
-        loop
-        autoPlay={isAutoPlay}
-        withAnimation={{
-          type: 'spring',
-          config: {
-            damping: 13,
-          },
-        }}
-        autoPlayInterval={1500}
-        data={data}
-        renderItem={({index, animationValue}) => (
-          <Card
-            animationValue={animationValue}
-            key={index}
-            index={index}
-            data={data[index]}
+  if (data.length) {
+    return (
+      <View style={{flex: 1}}>
+        <ImageBackground source={image} resizeMode="cover" style={styles.image}>
+          <Carousel
+            {...baseOptions}
+            loop
+            autoPlay={isAutoPlay}
+            withAnimation={{
+              type: 'spring',
+              config: {
+                damping: 13,
+              },
+            }}
+            autoPlayInterval={1500}
+            data={data}
+            renderItem={({index, animationValue}) => {
+              return (
+                <Card
+                  animationValue={animationValue}
+                  key={index}
+                  index={index}
+                  data={data[index]}
+                />
+              );
+            }}
           />
-        )}
-      />
-      <SButton
-        onPress={() => {
-          setIsAutoPlay(!isAutoPlay);
-        }}>
-        {ElementsText.AUTOPLAY}:{`${isAutoPlay}`}
-      </SButton>
-      </ImageBackground>
-    </View>
-  );
+          <SButton
+            onPress={() => {
+              setIsAutoPlay(!isAutoPlay);
+            }}>
+            {ElementsText.AUTOPLAY}:{`${isAutoPlay}`}
+          </SButton>
+        </ImageBackground>
+      </View>
+    );
+  }
 };
 
 export default CarouselContainer;
