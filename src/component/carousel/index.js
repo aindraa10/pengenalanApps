@@ -227,7 +227,7 @@ const Card = props => {
 };
 
 const CarouselContainer = ({data}) => {
-  const [isAutoPlay, setIsAutoPlay] = React.useState(false);
+  // const [isAutoPlay, setIsAutoPlay] = React.useState(false);
   const image = require('../../../assets/bgTaman.jpg');
   const baseOptions = {
     vertical: false,
@@ -242,14 +242,14 @@ const CarouselContainer = ({data}) => {
           <Carousel
             {...baseOptions}
             loop
-            autoPlay={isAutoPlay}
+            // autoPlay={isAutoPlay}
             withAnimation={{
               type: 'spring',
               config: {
                 damping: 13,
               },
             }}
-            autoPlayInterval={1500}
+            // autoPlayInterval={1500}
             data={data}
             renderItem={({index, animationValue}) => {
               return (
@@ -262,12 +262,12 @@ const CarouselContainer = ({data}) => {
               );
             }}
           />
-          <SButton
+          {/* <SButton
             onPress={() => {
               setIsAutoPlay(!isAutoPlay);
             }}>
             {ElementsText.AUTOPLAY}:{`${isAutoPlay}`}
-          </SButton>
+          </SButton> */}
         </ImageBackground>
       </View>
     );

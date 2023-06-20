@@ -1,5 +1,4 @@
 import React, {useEffect, useState, useCallback, useMemo} from 'react';
-
 import {ToastAndroid, ActivityIndicator} from 'react-native';
 import {Carous, Container} from '../../component';
 import {BASE_URL, IMG_URL, endpoints} from '../../config';
