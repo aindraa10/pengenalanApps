@@ -212,13 +212,13 @@ const Card = props => {
           {
             width: WIDTH * 0.8,
             height: HEIGHT / 1.5,
-            borderRadius: 16,
+            borderRadius: 50,
             justifyContent: 'center',
             alignItems: 'center',
             position: 'absolute',
             zIndex: 999,
           },
-          blockStyle,
+          // blockStyle,
         ]}
         resizeMode={'contain'}
       />
